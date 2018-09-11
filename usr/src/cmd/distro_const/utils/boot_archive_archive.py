@@ -43,9 +43,7 @@ from osol_install.distro_const.dc_defs import BOOT_ARCHIVE_COMPRESSION_TYPE
 from osol_install.distro_const.dc_defs import BOOT_ARCHIVE_SIZE_PAD
 from osol_install.distro_const.dc_defs import BOOT_ARCHIVE_BYTES_PER_INODE
 from osol_install.distro_const.dc_defs import BA_FILENAME_SUN4U
-from osol_install.distro_const.dc_defs import BA_FILENAME_X86
 from osol_install.distro_const.dc_defs import BA_FILENAME_AMD64
-from osol_install.distro_const.dc_defs import BA_FILENAME_ALL
 from osol_install.distro_const.dc_defs import \
     BOOT_ARCHIVE_CONTENTS_BASE_INCLUDE_NOCOMPRESS
 from osol_install.ti_defs import TI_ATTR_TARGET_TYPE, \
@@ -322,16 +320,8 @@ if (KERNEL_ARCH == "sparc"):
     BA_BUILD = BA_MASTER
     STRIP_ARCHIVE = False
     IS_SPARC = True
-elif (KERNEL_ARCH == "x86"):
-    BA_ARCHFILE = PKG_IMG_MNT_PT + BA_FILENAME_X86
-    BA_BUILD = TMP_DIR + "/" + KERNEL_ARCH
-    STRIP_ARCHIVE = True
 elif (KERNEL_ARCH == "amd64"):
     BA_ARCHFILE = PKG_IMG_MNT_PT + BA_FILENAME_AMD64
-    BA_BUILD = TMP_DIR + "/" + KERNEL_ARCH
-    STRIP_ARCHIVE = True
-else:
-    BA_ARCHFILE = PKG_IMG_MNT_PT + BA_FILENAME_ALL
     BA_BUILD = BA_MASTER
     STRIP_ARCHIVE = False
 

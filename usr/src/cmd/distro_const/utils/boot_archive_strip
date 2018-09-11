@@ -71,10 +71,7 @@ ${CD} ${BA_BUILD}
 # from /kernel, /platform, and /lib.  Conversely, on amd64, we remove anything
 # from /kernel and /platform that's not a .conf file or in an amd64 directory
 
-if [ ${KERNEL_ARCH} == "x86" ]; then
-	print "Stripping amd64 components"
-	${FIND} kernel platform lib -name amd64 | ${XARGS} ${RM} -rf 
-elif [ ${KERNEL_ARCH} == "amd64" ]; then
+if [ ${KERNEL_ARCH} == "amd64" ]; then
 	print "Stripping i386 components"
 	${FIND} kernel platform -type f -print | ${GREP} -v conf$ | 
 	    ${GREP} -v /amd64/ | ${XARGS} ${RM} -f
