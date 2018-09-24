@@ -318,12 +318,10 @@ IS_SPARC = False
 if (KERNEL_ARCH == "sparc"):
     BA_ARCHFILE = PKG_IMG_MNT_PT + BA_FILENAME_SUN4U
     BA_BUILD = BA_MASTER
-    STRIP_ARCHIVE = False
     IS_SPARC = True
 elif (KERNEL_ARCH == "amd64"):
     BA_ARCHFILE = PKG_IMG_MNT_PT + BA_FILENAME_AMD64
     BA_BUILD = BA_MASTER
-    STRIP_ARCHIVE = False
 
 # Location of the lofi file mountpoint, known only to this file.
 BA_LOFI_MNT_PT = TMP_DIR + "/ba_lofimnt"
@@ -378,16 +376,6 @@ if (os.path.exists(BA_ARCHFILE)):
     os.remove(BA_ARCHFILE)
 if not (os.path.exists(os.path.dirname(BA_ARCHFILE))):
     os.mkdir(os.path.dirname(BA_ARCHFILE))
-
-# If creating a single-architecture archive, copy full contents to temporary
-# area and strip unused architecture
-if STRIP_ARCHIVE:
-    CMD = "/usr/share/distro_const/boot_archive_strip "
-    CMD += BA_MASTER + " " + BA_BUILD + " " + KERNEL_ARCH
-    COPY_STATUS = os.system(CMD)
-    if (COPY_STATUS != 0):
-        raise Exception, (sys.argv[0] + ": Unable to strip boot archive: " +
-                          os.strerror(COPY_STATUS >> 8))
 
 print "Sizing boot archive requirements..."
 # dir_size() returns size in bytes, need to convert to KB
