@@ -374,7 +374,8 @@ if [ -f ${iso_path}/boot/bootia32.efi ] ; then
   cp ${iso_path}/boot/bootia32.efi ${usb_path}/efi/boot/BOOTIA32.EFI
   cp ${iso_path}/boot/bootx64.efi ${usb_path}/efi/boot/BOOTX64.EFI
 else
-  cp ${iso_path}/boot/boot1.efi ${usb_path}/efi/boot/BOOTX64.EFI
+  cp ${iso_path}/boot/loader64.efi ${usb_path}/efi/boot/BOOTX64.EFI
+  cp ${iso_path}/boot/loader32.efi ${usb_path}/efi/boot/BOOTIA32.EFI
 fi
 umount ${usb_path}
 
